@@ -1,3 +1,5 @@
+# require 'pry'
+
 # Write your code below game_hash
 def game_hash
   {
@@ -127,3 +129,60 @@ def game_hash
 end
 
 # Write code here
+
+def num_points_scored(find_player)
+    game_hash.each do |home_away, team_info|
+      team_info.each do |team_info ,value|
+      if team_info == :players
+        value.find do |player|
+        if find_player == player[:player_name]
+          return player[:points]
+        end end end end end end
+
+def shoe_size(find_player)
+  arr = []
+    game_hash.each do |home_away, team_info|
+      team_info.each do |team_info ,value|
+      if team_info == :players
+        value.find do |player|
+        if find_player == player[:player_name]
+          arr << player[:shoe]
+        end end end end end 
+        arr[0] 
+end
+
+def team_colors(team_name)
+  arr = []
+  game_hash.each do |home_away, team_info|
+    if team_name == team_info[:team_name]
+      arr << team_info[:colors]
+    end
+    end
+    arr[0]
+end
+
+def team_names
+  game_hash.values.map {|val| val[:team_name]} 
+end
+
+def player_numbers(team_names)
+  arr = []
+  game_hash.each do |home_away, team_info|
+    if team_names == team_info[:team_name]
+      arr << team_info[:players].map {|p| p[:number]}
+    end
+  end
+  arr[0]
+end
+
+def player_stats(players_name)
+  game_hash.map do |home_away, team_info|
+    team_info.map do |team_info ,value|
+    if team_info == :players
+      value.find do |player|
+      if players_name == player[:player_name]
+        return player
+      end end end end end end
+
+
+
